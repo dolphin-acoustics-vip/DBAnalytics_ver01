@@ -177,8 +177,6 @@ class PopulateDB {
             // Populate Database
             int i=0;
             for (; i < dbSize ; i++) {
-                // If the database has been successfully populated for a movie, the method will return a 
-                // boolean value, which will be added to a boolean list.   
                 populateDB(conn);
             }
 
