@@ -151,9 +151,10 @@ class PopulateDB {
     	
     	// Deal with args exceptions (too little/many arguments than expected)
         if (args.length != 2) {
-            System.out.println("2 Arguments Required.");
-			System.exit(-1);
-		}
+            System.err.println("Expected 2 arguments, but got: " + args.length);
+	    System.err.println("Usage: java PopulateDB.java <Database Size> <Blob Size>");
+	    System.exit(-1);
+	}
 
         try {
             // Parse the string argument into an integer value.
@@ -161,8 +162,6 @@ class PopulateDB {
             blobSize = Integer.parseInt(args[1]);
         }
         catch (NumberFormatException e) {
-            // The first argument isn't a valid integer.  Print
-            // an error message, then exit with an error code.
             System.out.println("The arguments must both be an integers.");
             System.exit(1);
         };
