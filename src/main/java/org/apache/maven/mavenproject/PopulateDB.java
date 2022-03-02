@@ -3,36 +3,21 @@ package org.apache.maven.mavenproject;
 /**
  * This class populates the data tables created in InitializeID.java with random data.
  * Successful population of the data tables prints "Database Populated."
- * 
- * @author 200027063
- * @since  March
  */
 
 import java.io.*;
 import java.sql.*;
-import java.text.ParseException;
 import java.util.*;
+import java.text.ParseException;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 class PopulateDB {
 
-
-//    // URL Information for connection to online database
-//    //55295a9d //9024a7d5
-//    private static String omdb = "https://www.omdbapi.com/?apikey=9024a7d5&r=json&TITLE_OR_ID&page=PAGE"; // Link to OMDB JSON API
-//    private static String response = "";
-//    private static final int numOfPagesForAPI = 5; // Number of pages to iterate through in the Online Database
-//
-//    private static int mID = 0; // Temporary movie ID variable
-
-    
-    
-    
     /**
      * Method Executes an SQL Query and returns a single string value
      * @param conn [Connection] to enable the establishing online connection to database
-     * @param SQLquery [String] contains query in sql format which interacts with dtatabase when executed
+     * @param SQLquery [String] contains query in SQL format which interacts with database when executed
      * @return String
      * @throws SQLException
      */
@@ -41,7 +26,6 @@ class PopulateDB {
         String element = "";
 
         try {
-
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery(SQLquery);
             element = results.getString(1);
@@ -62,7 +46,7 @@ class PopulateDB {
     /**
      * Method Executes an SQL Query 
      * @param conn [Connection] to enable the establishing online connection to database
-     * @param SQLquery [String] contains query in sql format which interacts with dtatabase when executed
+     * @param SQLquery [String] contains query in SQL format which interacts with database when executed
      * @return [ArrayList<String>]
      * @throws SQLException
      */
@@ -112,7 +96,7 @@ class PopulateDB {
 //        {                
         	int randomNum = ThreadLocalRandom.current().nextInt(0, dbSize + 1);
         	
-        	// Generating Binary Blobs
+        	// Generating Binary Blobs (all zero)
         	byte[] blob = new byte[blobSize];
 
         	// optionally
@@ -123,9 +107,6 @@ class PopulateDB {
             statement.executeUpdate();
 
 //        }
-
-//        // Get the ID of the movie the data of which each DB will be populated with
-//        iID = getID(connection, "SELECT Index_ID FROM 'NormalThings' WHERE int=\"" + randomNum + "\"");
         
         // Closing statement if not null
         if (statement != null){
@@ -137,7 +118,7 @@ class PopulateDB {
     
     
     /**
-     * Method calls sub-methods which populate each individual database table (ex: Movie, Ator, Director, acted, etc...)
+     * Method calls sub-methods which populate the database table
      * @param conn [Connection] to enable the establishing online connection to database
      * @param movie [JSONObject] the specific movie JSON object to read and parse information from
      * @return [boolean] only true when all databases have been successfully populated
@@ -174,8 +155,6 @@ class PopulateDB {
 			System.exit(-1);
 		}
 
-//        dbSize = 100;
-//        blobSize = 100;
         try {
             // Parse the string argument into an integer value.
             dbSize = Integer.parseInt(args[0]);
@@ -204,26 +183,10 @@ class PopulateDB {
                 populateDB(conn);
             }
 
-            // Only if all the elements of the boolean list are "true", meaning that all movies' information
-            // have been successfully updated, a message confirming the successful populating will be printed.
-            if (i!=dbSize+1) {
+            if (i != dbSize+1) {
                 System.out.println("Database Populated.");
-            } else {System.out.println("Unable to Populate Database.");}
-
-
-            // Statement st = conn.createStatement();
-
-            // DatabaseMetaData metaData = conn.getMetaData();
-            // String[] types = {"TABLE"};
-            // ResultSet aIDrequest = metaData.getTables(null,null, "%", types);
-            // while (aIDrequest.next()){
-            //     System.out.println(aIDrequest.getString("TABLE_NAME"));
-            // }
-
-            // ResultSet aIDrequest = st.executeQuery("SELECT name,Actor_ID FROM 'acted','Actor'");
-            // while (aIDrequest.next()){
-            //     System.out.println(aIDrequest.getString(2) + " | " + aIDrequest.getString(1));
-            // }
+            } else {System.out.println("Unable to Populate Database.");
+		}
 
 
         } catch(SQLException e) {
