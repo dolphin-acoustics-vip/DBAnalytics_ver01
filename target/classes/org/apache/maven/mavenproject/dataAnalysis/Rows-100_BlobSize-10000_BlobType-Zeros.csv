@@ -1,0 +1,2 @@
+Run , DB Rows , Blob Size (Bytes) , Blob Type , DB Size (Bytes) , Total Write Time , Avrg. Write Time (s) , Write Time Deviation , Min Write Time (s) , Max Write Time (s) , Most Common Write Time (s) , Write Time Increase
+1 , 100 , 10000 , Zeros , 1056768 , 00:00:0.536 , 0.005 , 7.67E-4 , 0.003 , 0.009 , 0.005 , 1.6E-6
