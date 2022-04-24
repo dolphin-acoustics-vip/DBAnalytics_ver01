@@ -14,6 +14,9 @@ import java.text.DecimalFormat;
 
 /**
  * Main method class to read and analyse the SQLite database given.
+ * 
+ * Would ne useful to enable cass to run InitializeDB.java and PopulateDB.java
+ * in order to colate more data from similar databases.
  */
 public class DataAnalysis {
 	
